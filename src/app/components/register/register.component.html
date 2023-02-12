@@ -1,0 +1,96 @@
+<div
+  class="card container py-3 px-2 mx-auto mt-5 bg-dark bg-opacity-75 text-white"
+>
+  <div class="card-body">
+    <form class="row" [formGroup]="student">
+      <h1 class="text-center border-bottom pb-3">Student Registration</h1>
+      <div class="mb-3 col-md-6 col-lg-6 col-sm-12">
+        <label class="form-label">Name</label>
+        <input
+          type="text"
+          formControlName="name"
+          class="form-control focusedInput"
+          aria-describedby="emailHelp"
+        />
+        <div *ngIf="inValid">
+          <span *ngIf="student.controls['name']?.errors?.['required']">
+            Name is Required
+          </span>
+          <span *ngIf="student.controls['name']?.errors?.['minlength']">
+            Name must have minimum 4 Characters
+          </span>
+        </div>
+      </div>
+      <div class="mb-3 col-md-6 col-lg-6 col-sm-12">
+        <label class="form-label">Date of Birth</label>
+        <input
+          type="date"
+          class="form-control focusedInput"
+          formControlName="dob"
+        />
+        <div *ngIf="inValid">
+          <span *ngIf="student.controls['dob']?.errors?.['required']">
+            Date of Birth is Required
+          </span>
+        </div>
+      </div>
+      <div class="mb-3 col-md-6 col-lg-6 col-sm-12">
+        <label class="form-label">Gender</label>
+        <select class="form-control focusedInput" formControlName="gender">
+          <option selected disabled>- Select Gender -</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+        <div *ngIf="inValid">
+          <span *ngIf="student.controls['gender']?.errors?.['required']">
+            Gender is Required
+          </span>
+        </div>
+      </div>
+      <div class="mb-3 col-md-6 col-lg-6 col-sm-12">
+        <label class="form-label">Phone</label>
+        <input
+          type="number"
+          class="form-control focusedInput"
+          formControlName="phone"
+        />
+        <div *ngIf="inValid">
+          <span *ngIf="student.controls['phone']?.errors?.['required']">
+            Phone is Required
+          </span>
+          <span
+            *ngIf="student.controls['phone']?.errors?.['minlength'] || student.controls['phone']?.errors?.['minlength']"
+          >
+            Enter valid Phone number
+          </span>
+        </div>
+      </div>
+      <div class="mb-3 col-md-6 col-lg-6 col-sm-12">
+        <label class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control focusedInput"
+          formControlName="email"
+        />
+        <div *ngIf="inValid">
+          <span *ngIf="student.controls['email']?.errors?.['required']">
+            Email is Required
+          </span>
+          <span *ngIf="student.controls['email']?.errors?.['email'] ">
+            Enter valid Mail Id
+          </span>
+        </div>
+      </div>
+      <div class="col-12 d-flex justify-content-center mt-3">
+        <button
+          type="submit"
+          class="btn btn-light fs-5 px-5"
+          (click)="post()"
+        >
+          <b>Register</b>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
